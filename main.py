@@ -68,24 +68,26 @@ def Inicio():
 
 
 
+def cargar_imagen(ruta, dimensiones):
+    imagen = pygame.image.load(ruta)
+    imagen = pygame.transform.scale(imagen, dimensiones)
+    return imagen
+
+def dibujar_imagen(imagen, coordenadas):
+    SCREEN.blit(imagen, coordenadas)
+
 def Menu():
+    fondo_menu = cargar_imagen("Imagenes/Menu/Fondo_menu.png", (Ancho_pantalla, Alto_pantalla))
+    dibujar_imagen(fondo_menu, (0, 0))
 
-    fondo_menu = pygame.image.load("Imagenes/Menu/Fondo_menu.png")
-    fondo_menu = pygame.transform.scale(fondo_menu, (Ancho_pantalla, Alto_pantalla))
-    SCREEN.blit(fondo_menu, (0, 0))
-
-    idioma = pygame.image.load("Imagenes/Menu/Botones/Idioma.png")
-    idioma = pygame.transform.scale(idioma, (300, 300))
-    SCREEN.blit(idioma, (320, 160))
+    idioma = cargar_imagen("Imagenes/Menu/Botones/Idioma.png", (300, 300))
+    dibujar_imagen(idioma, (320, 160))
 
     if pista:
-        musica = pygame.image.load("Imagenes/Menu/Botones/Musica.png")
-        musica = pygame.transform.scale(musica, (300, 300))
-        SCREEN.blit(musica, (320, 240))
+        musica = cargar_imagen("Imagenes/Menu/Botones/Musica.png", (300, 300))
     else:
-        musica_desactivado = pygame.image.load("Imagenes/Menu/Botones/Musica_desactivado.png")
-        musica_desactivado = pygame.transform.scale(musica_desactivado, (300, 300))
-        SCREEN.blit(musica_desactivado, (320, 240))
+        musica = cargar_imagen("Imagenes/Menu/Botones/Musica_desactivado.png", (300, 300))
+    dibujar_imagen(musica, (320, 240))
 
 
 def Escenario():
